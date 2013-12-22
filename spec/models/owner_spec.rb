@@ -12,4 +12,18 @@ describe Owner do
   it { should have_many(:owner_dogs) }
   it { should have_many(:dogs).through(:owner_dogs) }
 
+  it 'can have many dogs' do
+    owner = FactoryGirl.create(:owner)
+    dogs = FactoryGirl.create_list(:dog, 5)
+
+    dogs.each do |dog|
+      FactoryGirl.create(:owner_dog, owner: owner, dog: dog)
+    end
+
+    dogs.each do |dog|
+      expect(owner.dogs).to include(dog)
+    end
+
+  end
+
 end
