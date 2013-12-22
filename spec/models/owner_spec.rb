@@ -9,4 +9,7 @@ describe Owner do
   it { should have_valid(:email).when('test@test.com', 'test+spam@gmail.com') }
   it { should_not have_valid(:email).when('fail', 123) }
 
+  it { should have_many(:owner_dogs) }
+  it { should have_many(:dogs).through(:owner_dogs) }
+
 end

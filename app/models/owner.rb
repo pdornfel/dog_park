@@ -6,5 +6,8 @@ class Owner < ActiveRecord::Base
 
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
 
+  has_many :owner_dogs
+  has_many :dogs, through: :owner_dogs
+
 
 end
